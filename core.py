@@ -37,12 +37,15 @@ class Manager:
         return result
 
 
-class Model:
+class ModelMeta(type):
     manager_class = Manager
 
-    @classmethod
-    def get_objects_manager(cls):
+    @property
+    def objects(cls):
         return cls.manager_class(model_class=cls)
+
+
+class Model(metaclass=ModelMeta):
 
     def __init__(self, **row_data):
         for field_name, value in row_data.items():

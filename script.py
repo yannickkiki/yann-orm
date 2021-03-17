@@ -1,4 +1,4 @@
 from models import Employee
 
-employees = Employee.get_objects_manager().select('first_name', 'last_name', 'salary')
+employees = Employee.objects.select('id', 'first_name', 'last_name')
 print(employees)
