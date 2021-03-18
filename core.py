@@ -15,7 +15,7 @@ class Manager:
     def __init__(self, model_class):
         self.model_class = model_class
 
-    def select(self, *field_names, chunk_size=2000):
+    def select(self, *field_names, chunk_size=2000, condition):
         fields_csv = ', '.join(field_names)
         query = f"SELECT {fields_csv} FROM {self.table_name}"
 
@@ -53,3 +53,11 @@ class Model(metaclass=ModelMeta):
 
     def __repr__(self):
         return str(self.__dict__)
+
+
+class Condition:
+    def __init__(self, *args):
+        pass
+
+    def __or__(self, other_condition):
+        pass
