@@ -1,5 +1,4 @@
 import itertools
-import importlib
 
 import psycopg2
 
@@ -23,7 +22,8 @@ class BaseManager:
 
     def select(self, *field_names, chunk_size=2000, condition=None):
         # Build SELECT query
-        query = f"SELECT {', '.join(field_names)} FROM {self.table_name}"
+        fields_format = ', '.join(field_names)
+        query = f"SELECT {fields_format} FROM {self.table_name}"
         if condition:
             query += f" WHERE {condition.str}"
 
@@ -63,7 +63,8 @@ class BaseManager:
         values_row_format = f'({", ".join(["%s"]*n_fields)})'
         values_format = ", ".join([values_row_format]*n_rows)
 
-        query = f"INSERT INTO {self.table_name} ({', '.join(field_names)}) VALUES {values_format}"
+        fields_format = ', '.join(field_names)
+        query = f"INSERT INTO {self.table_name} ({fields_format}) VALUES {values_format}"
         params = tuple(itertools.chain(*values))
 
         # Execute query
@@ -75,8 +76,8 @@ class BaseManager:
 
     def update(self, new_data, condition=None):
         # Build UPDATE query
-        query = f"UPDATE {self.table_name} " \
-                f"SET {', '.join([f'{field_name} = {value}' for field_name, value in new_data.items()])}"
+        new_data_format = ', '.join([f'{field_name} = {value}' for field_name, value in new_data.items()])
+        query = f"UPDATE {self.table_name} SET {new_data_format}"
         if condition:
             query += f" WHERE {condition.str}"
 
@@ -93,8 +94,3 @@ class BaseManager:
         # Execute query
         cursor = self._get_cursor()
         cursor.execute(query)
-
-
-settings_module = importlib.import_module("settings")
-db_settings = getattr(settings_module, "DB_SETTINGS")
-BaseManager.set_connection(**db_settings)
