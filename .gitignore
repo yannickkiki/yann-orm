@@ -17,3 +17,5 @@ _local/*
 *local.*
 .DS_Store
 update_branches.sh
+build
+dist

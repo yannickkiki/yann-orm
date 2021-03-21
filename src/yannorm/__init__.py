@@ -1,2 +1,2 @@
 from .model import BaseModel, BaseManager
-from .condition import Condition
+from .utils import Condition, F
