@@ -7,6 +7,10 @@ DBMS supported:
 * SQLite (coming soon...)
 * Mysql (coming soon...)
 
+
+## Demo
+* [Usage template of yannorm](https://github.com/yannickkiki/yannorm-usage-template)
+
 ## Features
 
 Overview of the features by example
@@ -73,6 +77,8 @@ Employee.get_fields()
 ```
 
 ## TODO
+* Review package setup
+* Review code before going further 
 * Add support for table/model create-alter-delete queries
 * Add support for table joins
 * Add `bulk_update` method to `BaseManager`
