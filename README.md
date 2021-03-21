@@ -2,11 +2,10 @@
 
 Simple ORM with Python.
 
-DBMS supported:
+## DBMS supported:
 * Postgresql
 * SQLite (coming soon...)
 * Mysql (coming soon...)
-
 
 ## Demo
 * [Usage template of yannorm](https://github.com/yannickkiki/yannorm-usage-template)
