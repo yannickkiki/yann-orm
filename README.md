@@ -51,7 +51,7 @@ Employee.objects.update(
     condition=Condition(id__gt=4)
 )
 
-# SQL DELETE FROM employees WHERE age < 20;
+# SQL: DELETE FROM employees WHERE age < 20;
 Employee.objects.delete(condition=Condition(age__lt=20))
 
 # SQL: SELECT salary FROM employees WHERE id >= 2 AND id <= 4;
